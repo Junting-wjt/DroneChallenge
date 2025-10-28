@@ -9,19 +9,21 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include"Oscillators.h"
-#include"ModulationSynth.h"
-using namespace juce;
+#include "Oscillator.h"
+#include "Filter.h"
+#include "Noise.h"
+#include"HarmonicSeries.h"
+#include"PhaseModulation.h"
 
 //==============================================================================
 /**
 */
-class DroneChallengeAudioProcessor  : public juce::AudioProcessor
+class PluginTestAudioProcessor  : public juce::AudioProcessor
 {
 public:
     //==============================================================================
-    DroneChallengeAudioProcessor();
-    ~DroneChallengeAudioProcessor() override;
+    PluginTestAudioProcessor();
+    ~PluginTestAudioProcessor() override;
 
     //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
@@ -57,12 +59,48 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
-    float sr; //sampleRate
+    
+    float sr;
+    SinOsc sinOsc;
+    SquareOsc squareOsc;
+    SinOsc lfo;
+    SinOsc lfo2;
+
+    juce::IIRFilter filter;
+    
+    //filter
+    Filter filterout;
+    float filterOutput;
+    
+    //noise
+    Noise Noiseout;
+    juce::Random random;
+    
+    //reverb
     Reverb reverb;
-    ModulationSynth modulationSynth;
-    SinOsc envolopeSinOne;
-    SinOsc envolopeSinTwo;
-    SinOsc panningSin;
+    
+    //harmonic
+    HarmonicSeries harmonicSeries;
+    
+    //modulation
+    PhaseModulation phaseModulation;
+    
+    //panning
+    SinOsc panGain;
+    
+    //envelope
+    TimeControl timeControl;
+    SquareOsc squareOscEvn;
+    SinOsc sinEnv1;
+    SinOsc sinEnv2;
+    SinOsc sinEnv3;
+    SinOsc sinEnv4;
+    SinOsc sinEnv5;
+    SinOsc sinEnv6;
+    TriOsc TriEnv1;
+    TriOsc TriEnv2;
+    TriOsc TriEnv3;
+    
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DroneChallengeAudioProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginTestAudioProcessor)
 };

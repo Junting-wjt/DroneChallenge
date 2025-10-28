@@ -14,11 +14,11 @@
 //==============================================================================
 /**
 */
-class DroneChallengeAudioProcessorEditor  : public juce::AudioProcessorEditor
+class PluginTestAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
-    DroneChallengeAudioProcessorEditor (DroneChallengeAudioProcessor&);
-    ~DroneChallengeAudioProcessorEditor() override;
+    PluginTestAudioProcessorEditor (PluginTestAudioProcessor&);
+    ~PluginTestAudioProcessorEditor() override;
 
     //==============================================================================
     void paint (juce::Graphics&) override;
@@ -27,7 +27,7 @@ public:
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    DroneChallengeAudioProcessor& audioProcessor;
+    PluginTestAudioProcessor& audioProcessor;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DroneChallengeAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PluginTestAudioProcessorEditor)
 };
